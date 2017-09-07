@@ -1,5 +1,5 @@
 name: registry
-home: https://github.com/deis/registry
+home: https://github.com/deisthree/registry
 version: <Will be populated by the ci before publishing the chart>
 description: Docker registry for Deis Workflow.
 maintainers:
