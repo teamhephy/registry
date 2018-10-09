@@ -58,6 +58,13 @@ func main() {
 			os.Setenv("AWS_REGION", string(region))
 		}
 
+		if endpoint, err := ioutil.ReadFile("/var/run/secrets/deis/registry/creds/endpoint"); err != nil {
+			log.Fatal(err)
+		} else {
+			os.Setenv("REGISTRY_STORAGE_S3_REGIONENDPOINT", string(endpoint))
+			os.Setenv("AWS_ENDPOINT", string(endpoint))
+		}
+
 		if bucket, err := ioutil.ReadFile("/var/run/secrets/deis/registry/creds/registry-bucket"); err != nil {
 			log.Fatal(err)
 		} else {

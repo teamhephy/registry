@@ -11,6 +11,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 from gcloud.storage.client import Client
 from gcloud import exceptions
 from azure.storage.blob import BlobService
+from urllib.parse import urlparse
 
 def bucket_exists(conn, name):
     bucket = conn.lookup(name)
@@ -22,7 +23,16 @@ bucket_name = os.getenv('BUCKET_NAME')
 region = os.getenv('AWS_REGION')
 
 if os.getenv('REGISTRY_STORAGE') == "s3" and os.getenv('REGISTRY_STORAGE_S3_BACKEND') != 'minio':
-    conn = boto.s3.connect_to_region(region)
+    conn = False
+    if os.getenv('AWS_ENDPOINT'):
+        endpoint = urlparse(os.getenv('AWS_ENDPOINT'))
+        conn = boto.s3.connect_to_region(region,
+            host=endpoint.hostname,
+            port=endpoint.port,
+            path=endpoint.path,
+            calling_format=boto.s3.connection.OrdinaryCallingFormat())
+    else:
+        conn = boto.s3.connect_to_region(region)
 
     if not bucket_exists(conn, bucket_name):
         if region == "us-east-1":
