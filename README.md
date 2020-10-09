@@ -65,6 +65,6 @@ To deploy the image via patching the registry deployment run:
 $ make deploy
 ```
 
-[issues]: https://github.com/deisthree/registry/issues
-[prs]: https://github.com/deisthree/registry/pulls
-[v2.18]: https://github.com/deisthree/workflow/releases/tag/v2.18.0
+[issues]: https://github.com/teamhephy/registry/issues
+[prs]: https://github.com/teamhephy/registry/pulls
+[v2.18]: https://github.com/teamhephy/workflow/releases/tag/v2.18.0
