@@ -1,6 +1,8 @@
+apiVersion: v2
 name: registry
 home: https://github.com/teamhephy/registry
-version: <Will be populated by the ci before publishing the chart>
+version: 2.6.3
 description: Docker registry for Hephy Workflow.
 maintainers:
-  - email: team@teamhephy.com
+- name: Team Hephy
+  email: team@teamhephy.com
